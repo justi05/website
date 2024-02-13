@@ -100,9 +100,6 @@
             authDomain: "esp32-3d0e7.firebaseapp.com",
             databaseURL: "https://esp32-3d0e7-default-rtdb.asia-southeast1.firebasedatabase.app/",
             projectId: "esp32-3d0e7",
-            // storageBucket: "YOUR_STORAGE_BUCKET",
-            // messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            // appId: "YOUR_APP_ID"
         };
         firebase.initializeApp(firebaseConfig);
 
@@ -123,14 +120,14 @@
                 const dateList = dateTime[0].split('-');
                 const timeList = dateTime[1].split(':');
 
-                if (currentDate == parseInt(dateList[2]) && currentMonth == parseInt(dateList[1]) && Math.abs(parseInt(timeList[0]) - currentHours) <= 2) {
+                if (currentDate == parseInt(dateList[2]) && currentMonth == parseInt(dateList[1]) && Math.abs(parseInt(timeList[0]) - currentHours) <= 1) {
                     const data = childSnapshot.val();
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                     <td>${dateTime[0]}</td>
                     <td>${dateTime[1]}</td>
-                    <td>${data.glucose}</td>
-                    <td>${data.creatin}</td>`;
+                    <td>${data.glucose !== undefined ? data.glucose : '-'}</td>
+                    <td>${data.creatin !== undefined ? data.creatin : '-'}</td>`;
                     dataList.appendChild(tr);
                 }
 
